@@ -4,12 +4,20 @@ const estudiantesRoutes = require('../gestion-estudiantes/routes/estudiantesrout
 
 const app = express();
 
-// Middleware para parsear JSON
+// Configuración del motor de plantillas ejs
+app.set('view engine', 'ejs');
+app.set('views', './views'); // Asegúrate de que la carpeta 'views' esté en el lugar correcto
+
+// Middleware para parsear JSON y datos de formularios
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Middleware para servir archivos estáticos
+app.use(express.static('public'));
 
 // Ruta de prueba para verificar que el servidor esté funcionando
 app.get('/', (req, res) => {
-    res.send('Servidor funcionando correctamente');
+    res.render('index'); // Renderiza la vista 'index.ejs'
 });
 
 // Rutas para manejar estudiantes
@@ -20,4 +28,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
-
