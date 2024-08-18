@@ -12,9 +12,7 @@ app.set('views', './views'); // Asegúrate de que la carpeta 'views' esté en el
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware para servir archivos estáticos
-app.use(express.static('public'));
-
+app.use(express.static("../public"));
 // Ruta de prueba para verificar que el servidor esté funcionando
 app.get('/', (req, res) => {
     res.render('index'); // Renderiza la vista 'index.ejs'
