@@ -3,9 +3,16 @@ const conexion = require('../db');
 
 exports.obtenerEstudiantes = (req, res) => {
     Estudiante.obtenerTodos(conexion)
-        .then(estudiantes => res.json(estudiantes))
-        .catch(err => res.status(500).json({ error: err.message }));
+        .then(estudiantes => {
+            res.render('index', { estudiantes }); // Renderiza la vista 'index.ejs' pasando los estudiantes
+        })
+        .catch(err => {
+            console.error('Error al obtener estudiantes:', err);
+            res.status(500).json({ error: err.message });
+        });
 };
+
+
 
 exports.obtenerEstudiantePorId = (req, res) => {
     const { id } = req.params;
