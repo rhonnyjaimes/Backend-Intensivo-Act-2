@@ -18,12 +18,11 @@ exports.obtenerEstudiantePorId = (req, res) => {
     const { id } = req.params;
     Estudiante.obtenerPorId(conexion, id)
         .then(estudiante => {
-            if (!estudiante) return res.status(404).json({ error: 'Estudiante no encontrado' });
-            res.json(estudiante);
+            if (!estudiante) return res.status(404).render('error', { message: 'Estudiante no encontrado' }); // Asegúrate de tener una vista de error si es necesario
+            res.render('detalle', { estudiante }); // Renderiza la vista detalle.ejs con los datos del estudiante
         })
-        .catch(err => res.status(500).json({ error: err.message }));
+        .catch(err => res.status(500).render('error', { message: err.message })); // Renderiza una vista de error si ocurre un problema
 };
-
 exports.crearEstudiante = (req, res) => {
     const nuevoEstudiante = req.body;
     Estudiante.crear(conexion, nuevoEstudiante)
