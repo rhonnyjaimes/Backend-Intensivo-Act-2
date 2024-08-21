@@ -7,6 +7,9 @@ router.get('/agregar', (req, res) => {
     res.render('agregar'); // Renderiza la vista agregar.ejs
  });
 
+ router.get('/carreras', (req, res) => {
+    res.render('carreras'); // Renderiza la vista agregar.ejs
+ });
 
 
 router.get('/:id', estudiantesController.obtenerEstudiantePorId);

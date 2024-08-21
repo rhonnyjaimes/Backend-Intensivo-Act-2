@@ -52,7 +52,9 @@ exports.eliminarEstudiante = (req, res) => {
 exports.obtenerEstudiantesPorCarrera = (req, res) => {
     const { carrera } = req.params;
     Estudiante.obtenerPorCarrera(conexion, carrera)
-        .then(estudiantes => res.json(estudiantes))
+        .then(estudiantes => {
+            res.render('estudiantescarreras', { estudiantes, carrera });
+        })
         .catch(err => res.status(500).json({ error: err.message }));
 };
 
