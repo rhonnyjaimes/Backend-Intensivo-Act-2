@@ -12,8 +12,6 @@ exports.obtenerEstudiantes = (req, res) => {
         });
 };
 
-
-
 exports.obtenerEstudiantePorId = (req, res) => {
     const { id } = req.params;
     Estudiante.obtenerPorId(conexion, id)
@@ -26,9 +24,10 @@ exports.obtenerEstudiantePorId = (req, res) => {
 exports.crearEstudiante = (req, res) => {
     const nuevoEstudiante = req.body;
     Estudiante.crear(conexion, nuevoEstudiante)
-        .then(id => res.status(201).json({ id }))
+        .then(() => res.redirect('/estudiantes')) // Redirige a la lista de estudiantes después de agregar
         .catch(err => res.status(500).json({ error: err.message }));
 };
+
 
 exports.actualizarEstudiante = (req, res) => {
     const { id } = req.params;
@@ -44,9 +43,8 @@ exports.actualizarEstudiante = (req, res) => {
 exports.eliminarEstudiante = (req, res) => {
     const { id } = req.params;
     Estudiante.eliminar(conexion, id)
-        .then(affectedRows => {
-            if (affectedRows === 0) return res.status(404).json({ error: 'Estudiante no encontrado' });
-            res.json({ message: 'Estudiante eliminado' });
+        .then(() => {
+            res.redirect('/estudiantes'); 
         })
         .catch(err => res.status(500).json({ error: err.message }));
 };
