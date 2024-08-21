@@ -63,7 +63,7 @@ PORT=3000
 
 npm start
 
-La aplicación estará disponible en http://localhost:3000.
+La aplicación estará disponible en http://localhost:3000/estudiantes.
 
 Todos los derechos reservados © 2024 Rhonny Andres Jaimes Gonzalez C.I. V-29.718.095.
 
