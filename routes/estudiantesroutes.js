@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const estudiantesController = require('../controllers/estudiantescontroller');
 
+router.get('/inscritos', estudiantesController.obtenerEstudiantesInscritos);
+router.get('/deudas', estudiantesController.obtenerEstudiantesConDeuda);
 
 router.get('/agregar', (req, res) => {
     res.render('agregar'); // Renderiza la vista agregar.ejs
  });
 
- router.get('/carreras', (req, res) => {
-    res.render('carreras'); // Renderiza la vista agregar.ejs
- });
 
 
 router.get('/:id', estudiantesController.obtenerEstudiantePorId);
@@ -19,10 +18,7 @@ router.get('/', estudiantesController.obtenerEstudiantes);
 
 
 
-// Ruta para obtener estudiantes inscritos
-router.get('/inscritos', estudiantesController.obtenerEstudiantesInscritos);
 
-// Ruta para obtener estudiantes con deuda
 router.get('/deudas', estudiantesController.obtenerEstudiantesConDeuda);
 // Ruta para crear un nuevo estudiante
 router.post('/agregar', estudiantesController.crearEstudiante);

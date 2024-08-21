@@ -66,6 +66,8 @@ exports.obtenerEstudiantesInscritos = (req, res) => {
 
 exports.obtenerEstudiantesConDeuda = (req, res) => {
     Estudiante.obtenerConDeuda(conexion)
-        .then(estudiantes => res.json(estudiantes))
+        .then(estudiantesConDeuda => {
+            res.render('deudas', { estudiantesConDeuda });
+        })
         .catch(err => res.status(500).json({ error: err.message }));
 };
