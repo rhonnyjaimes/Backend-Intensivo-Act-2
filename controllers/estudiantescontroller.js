@@ -60,7 +60,9 @@ exports.obtenerEstudiantesPorCarrera = (req, res) => {
 
 exports.obtenerEstudiantesInscritos = (req, res) => {
     Estudiante.obtenerInscritos(conexion)
-        .then(estudiantes => res.json(estudiantes))
+        .then(estudiantes => {
+            res.render('inscritos', { estudiantesInscritos: estudiantes });
+        })
         .catch(err => res.status(500).json({ error: err.message }));
 };
 
