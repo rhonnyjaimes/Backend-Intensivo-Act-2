@@ -9,17 +9,13 @@ router.get('/agregar', (req, res) => {
     res.render('agregar'); // Renderiza la vista agregar.ejs
  });
 
-
+router.get('/editar/:id', estudiantesController.mostrarEditarEstudiante);
 
 router.get('/:id', estudiantesController.obtenerEstudiantePorId);
 
 // Ruta para obtener todos los estudiantes
 router.get('/', estudiantesController.obtenerEstudiantes);
 
-
-
-
-router.get('/deudas', estudiantesController.obtenerEstudiantesConDeuda);
 // Ruta para crear un nuevo estudiante
 router.post('/agregar', estudiantesController.crearEstudiante);
 
